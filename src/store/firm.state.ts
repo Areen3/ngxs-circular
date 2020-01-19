@@ -34,10 +34,12 @@ export class FirmState extends BaseState<fromModel.IFirmModel> implements NgxsOn
     return state;
   }
   @Action(fromModel.CompanyMenagmentAction.UpdateFinance)
-  updateFinance(ctx: StateContext<fromModel.IFirmModel>, action: fromModel.CompanyMenagmentAction.UpdateFinance): Observable<any> {
+  updateFinance(ctx: StateContext<fromModel.IFirmModel>, action: fromModel.CompanyMenagmentAction.UpdateFinance): void {
+    // updateFinance(ctx: StateContext<fromModel.IFirmModel>, action: fromModel.CompanyMenagmentAction.UpdateFinance): Observable<any> {
     const state = ctx.getState();
     ctx.patchState({ actualCostFirm: state.actualCostFirm + action.payload });
-    return this.store.dispatch(new fromModel.CompanyMenagmentAction.Pause(0));
+    this.store.dispatch(new fromModel.CompanyMenagmentAction.Pause(0));
+    // return this.store.dispatch(new fromModel.CompanyMenagmentAction.Pause(0));
   }
   @Action(fromModel.CompanyMenagmentAction.Pause)
   Pause(ctx: StateContext<fromModel.IFirmModel>, action: fromModel.CompanyMenagmentAction.Pause): void {
